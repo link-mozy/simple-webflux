@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
+import org.springframework.data.r2dbc.config.EnableR2dbcAuditing;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
@@ -17,6 +18,7 @@ import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 @Profile("h2")
 @EnableR2dbcRepositories
 @Configuration
+@EnableR2dbcAuditing
 public class H2R2dbcConfig extends AbstractR2dbcConfiguration {
 
     @Override
@@ -25,7 +27,7 @@ public class H2R2dbcConfig extends AbstractR2dbcConfiguration {
                 .inMemory("testdb") // database name
                 .property(H2ConnectionOption.DB_CLOSE_DELAY, "-1") // DB연결이 단혀도 유지되도록 설정
                 .username("sa")
-                .password("sa")
+                .password("")
                 .build());
     }
 
