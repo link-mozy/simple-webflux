@@ -18,7 +18,6 @@ public class UserApiController {
     // Read
     @GetMapping("users")
     public Flux<User> findAll() {
-        log.info("findAll start!!");
         return userService.findAll();
     }
 
@@ -26,6 +25,12 @@ public class UserApiController {
     @PostMapping(value = "users", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<User> addUser(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+    // Update
+    @PutMapping(value = "users", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<User> updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
     }
 
     // Delete

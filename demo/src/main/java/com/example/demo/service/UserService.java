@@ -24,6 +24,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Mono<User> findUser(Long id) {
+        return userRepository.findById(id);
+    }
+
     public Mono<User> addUser(User user) {
         User newUser = User.builder()
                 .name(user.getName())
@@ -36,6 +40,17 @@ public class UserService {
 
     public Flux<User> addUsers(Flux<User> users) {
         return userRepository.saveAll(users);
+    }
+
+    public Mono<User> updateUser(User user) {
+        return findUser(user.getId()).map(u -> {
+                    if(user.getAge() != null) u.setAge(user.getAge());
+                    if(user.getName() != null) u.setName(user.getName());
+                    u.setUpdatedAt(LocalDateTime.now());
+                    return u;
+                })
+                .flatMap(userRepository::save)
+                .switchIfEmpty(Mono.error(new Exception("user update fail")));
     }
 
     public Mono<Void> deleteUser(Long id) {
