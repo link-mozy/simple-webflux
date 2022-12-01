@@ -44,7 +44,7 @@ $ docker build -t spring-webflux:v1 .
 도커 이미지 실행
 
 ```bash
-% docker run -p 8080:8080 -p 8081:8081 -d -t spring-webflux:v1 --name webflux
+$ docker run -p 8080:8080 -p 8081:8081 -d -t spring-webflux:v1 --name webflux
 ```
 
 ---
