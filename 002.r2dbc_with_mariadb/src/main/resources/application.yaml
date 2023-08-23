@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    url: r2dbc:mariadb://localhost:3306/gym?characterEncoding=UTF-8&useTimezone=true&serverTimezone=Asia/Seoul
+    username: root
+    password: test
